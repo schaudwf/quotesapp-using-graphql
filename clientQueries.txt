@@ -1,0 +1,74 @@
+query getAllUsers{
+  users{
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+
+-----------------------
+query getAllQuotes{
+  quotes{
+    name
+    by
+  }
+}
+---------------------------
+query getUserbyId{
+  user(_id:"23131"){
+    _id
+    firstName
+    lastName
+    email
+     quotes{
+      name
+    }
+  }
+  
+}
+
+--------------
+query getQuotebyuser{
+  iquote(by: "4232"){
+    name  
+    by
+  }
+}
+
+------------
+query getUserbyId($userid:ID!){
+  user(_id:$user_id){
+    _id
+    firstName
+    lastName
+    email
+     quotes{
+      name
+    }
+  }
+  
+}
+
+-------------------------------
+
+mutation createUser($userNew:UserInput!) {
+  user :singupUserDummy(userNew:$userNew){
+    _id
+    email
+    firstName
+    lastName
+  }
+}
+
+---------------------
+mutation signinUser($userSignin:UserSigninInput!) {
+  user :signinUser(userSignin:$userSignin){  
+    token
+    
+  }
+}
+
+
+
+mongodb+srv://<db_username>:<db_password>@cluster0.sddkr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
